@@ -19,6 +19,9 @@ interface ProductData {
   technicalSpecs?: string[];
   benefits?: string[];
   applications?: string[];
+  details?: string[];
+  resources?: string[];
+  drawing?: string;
 }
 
 // Wrap everything in a main function for better error handling
@@ -147,7 +150,37 @@ async function main() {
           });
         });
         
-        product.description = descriptions.join(' ').substring(0, 1000);
+        // Try to extract the main description (usually the first substantial paragraph)
+        let mainDescription = '';
+        if (descriptions.length > 0) {
+          // Look for the first substantial description paragraph
+          const firstDesc = descriptions[0];
+          const sentences = firstDesc.split(/[.!?]+/);
+          
+          // Take first 2-3 sentences for main description
+          if (sentences.length >= 2) {
+            mainDescription = sentences.slice(0, 3).join('. ').trim();
+            if (!mainDescription.endsWith('.')) {
+              mainDescription += '.';
+            }
+          } else {
+            mainDescription = firstDesc;
+          }
+        }
+        
+        // If no good description found, try alternative methods
+        if (!mainDescription) {
+          const altDescElements = document.querySelectorAll('main p, .content p, article p');
+          for (const p of altDescElements) {
+            const text = p.textContent?.trim();
+            if (text && text.length > 50 && !text.toLowerCase().includes('contact') && !text.toLowerCase().includes('buy online')) {
+              mainDescription = text;
+              break;
+            }
+          }
+        }
+        
+        product.description = mainDescription;
 
         // Extract main product image
         const imgSelectors = [
@@ -174,7 +207,8 @@ async function main() {
           '.product-specs li',
           '.technical-specs li',
           'table tr',
-          '.spec-item'
+          '.spec-item',
+          '[class*="specification"] li'
         ];
         
         specSelectors.forEach(selector => {
@@ -189,13 +223,14 @@ async function main() {
         
         product.specifications = [...new Set(specs)]; // Remove duplicates
 
-        // Extract features
+        // Extract features using multiple approaches
         const features: string[] = [];
+        
+        // Method 1: Class-based selectors
         const featureSelectors = [
           '.features li',
           '.product-features li',
           '.feature-list li',
-          '.benefits li',
           '[class*="feature"] li'
         ];
         
@@ -209,7 +244,237 @@ async function main() {
           });
         });
         
+        // Method 2: Find Features section by heading text
+        const featuresHeading = Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6')).find(h => 
+          h.textContent?.toLowerCase().includes('features') || h.textContent?.toLowerCase().includes('feature')
+        );
+        
+        if (featuresHeading) {
+          let nextElement = featuresHeading.nextElementSibling;
+          while (nextElement && !nextElement.matches('h1, h2, h3, h4, h5, h6')) {
+            if (nextElement.tagName === 'UL' || nextElement.tagName === 'OL') {
+              const items = nextElement.querySelectorAll('li');
+              items.forEach(item => {
+                const text = item.textContent?.trim();
+                if (text && text.length > 5 && text.length < 200) {
+                  features.push(text);
+                }
+              });
+            }
+            nextElement = nextElement.nextElementSibling;
+          }
+        }
+        
         product.features = [...new Set(features)]; // Remove duplicates
+
+        // Extract Benefits
+        const benefits: string[] = [];
+        
+        // Method 1: Class-based selectors
+        const benefitSelectors = [
+          '.benefits li',
+          '[class*="benefit"] li'
+        ];
+        
+        benefitSelectors.forEach(selector => {
+          const elements = document.querySelectorAll(selector);
+          elements.forEach(el => {
+            const text = el.textContent?.trim();
+            if (text && text.length > 5 && text.length < 200) {
+              benefits.push(text);
+            }
+          });
+        });
+        
+        // Method 2: Find Benefits section by looking for headings
+        const benefitsHeading = Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6')).find(h => 
+          h.textContent?.toLowerCase().includes('benefits') || h.textContent?.toLowerCase().includes('benefit')
+        );
+        
+        if (benefitsHeading) {
+          let nextElement = benefitsHeading.nextElementSibling;
+          while (nextElement && !nextElement.matches('h1, h2, h3, h4, h5, h6')) {
+            if (nextElement.tagName === 'UL' || nextElement.tagName === 'OL') {
+              const items = nextElement.querySelectorAll('li');
+              items.forEach(item => {
+                const text = item.textContent?.trim();
+                if (text && text.length > 5) {
+                  benefits.push(text);
+                }
+              });
+            } else if (nextElement.tagName === 'P') {
+              const text = nextElement.textContent?.trim();
+              if (text && text.length > 10) {
+                benefits.push(text);
+              }
+            }
+            nextElement = nextElement.nextElementSibling;
+          }
+        }
+        
+        product.benefits = [...new Set(benefits)]; // Remove duplicates
+
+        // Extract Applications
+        const applications: string[] = [];
+        const applicationsHeading = Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6')).find(h => 
+          h.textContent?.toLowerCase().includes('applications') || h.textContent?.toLowerCase().includes('application')
+        );
+        
+        if (applicationsHeading) {
+          let nextElement = applicationsHeading.nextElementSibling;
+          while (nextElement && !nextElement.matches('h1, h2, h3, h4, h5, h6')) {
+            if (nextElement.tagName === 'UL' || nextElement.tagName === 'OL') {
+              const items = nextElement.querySelectorAll('li');
+              items.forEach(item => {
+                const text = item.textContent?.trim();
+                if (text && text.length > 2) {
+                  applications.push(text);
+                }
+              });
+            } else if (nextElement.tagName === 'P' && nextElement.textContent?.trim()) {
+              const text = nextElement.textContent.trim();
+              if (text.length > 5) {
+                applications.push(text);
+              }
+            }
+            nextElement = nextElement.nextElementSibling;
+          }
+        }
+        
+        product.applications = [...new Set(applications)];
+
+        // Extract Details - Enhanced to capture full technical content
+        const details: string[] = [];
+        
+        // Method 1: Look for specific details/specifications headings
+        const detailsHeading = Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6')).find(h => 
+          h.textContent?.toLowerCase().includes('details') || 
+          h.textContent?.toLowerCase().includes('detail') ||
+          h.textContent?.toLowerCase().includes('specifications') ||
+          h.textContent?.toLowerCase().includes('specification')
+        );
+        
+        if (detailsHeading) {
+          let nextElement = detailsHeading.nextElementSibling;
+          while (nextElement && !nextElement.matches('h1, h2, h3, h4, h5, h6')) {
+            if (nextElement.tagName === 'UL' || nextElement.tagName === 'OL') {
+              const items = nextElement.querySelectorAll('li');
+              items.forEach(item => {
+                const text = item.textContent?.trim();
+                if (text && text.length > 5) {
+                  details.push(text);
+                }
+              });
+            } else if (nextElement.tagName === 'P' && nextElement.textContent?.trim()) {
+              const text = nextElement.textContent.trim();
+              if (text.length > 20) {
+                details.push(text);
+              }
+            }
+            nextElement = nextElement.nextElementSibling;
+          }
+        }
+        
+        // Method 2: Extract detailed technical content from main content area
+        // This captures the longer technical descriptions that aren't in the main description
+        const allParagraphs = document.querySelectorAll('main p, .content p, .entry-content p, article p');
+        let foundMainDesc = false;
+        
+        allParagraphs.forEach(p => {
+          const text = p.textContent?.trim();
+          if (text && text.length > 100) {
+            // Skip the main description paragraph we already captured
+            if (text.includes(product.description.substring(0, 50))) {
+              foundMainDesc = true;
+              return;
+            }
+            
+            // If we found the main description, capture subsequent detailed paragraphs
+            if (foundMainDesc && !text.toLowerCase().includes('contact') && 
+                !text.toLowerCase().includes('buy online') && 
+                !text.toLowerCase().includes('datasheet available')) {
+              details.push(text);
+            }
+            
+            // Also capture paragraphs that look like technical details
+            if (text.toLowerCase().includes('frequency') || 
+                text.toLowerCase().includes('antenna') ||
+                text.toLowerCase().includes('filtering') ||
+                text.toLowerCase().includes('lte') ||
+                text.toLowerCase().includes('signals') ||
+                text.toLowerCase().includes('technology') ||
+                text.toLowerCase().includes('performance') ||
+                text.toLowerCase().includes('rugged') ||
+                text.toLowerCase().includes('installation')) {
+              details.push(text);
+            }
+          }
+        });
+        
+        // Method 3: Look for any remaining technical content
+        const techContent = document.querySelectorAll('.technical-details, .product-details, .details-section');
+        techContent.forEach(section => {
+          const text = section.textContent?.trim();
+          if (text && text.length > 50) {
+            details.push(text);
+          }
+        });
+        
+        product.details = [...new Set(details)]; // Remove duplicates
+
+        // Extract Resources
+        const resources: string[] = [];
+        const resourcesHeading = Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6')).find(h => 
+          h.textContent?.toLowerCase().includes('resources') || 
+          h.textContent?.toLowerCase().includes('resource') ||
+          h.textContent?.toLowerCase().includes('downloads') ||
+          h.textContent?.toLowerCase().includes('documentation')
+        );
+        
+        if (resourcesHeading) {
+          let nextElement = resourcesHeading.nextElementSibling;
+          while (nextElement && !nextElement.matches('h1, h2, h3, h4, h5, h6')) {
+            if (nextElement.tagName === 'UL' || nextElement.tagName === 'OL') {
+              const items = nextElement.querySelectorAll('li');
+              items.forEach(item => {
+                const text = item.textContent?.trim();
+                if (text && text.length > 3) {
+                  resources.push(text);
+                }
+              });
+            }
+            // Also look for download links or resource links
+            const links = nextElement.querySelectorAll('a');
+            links.forEach(link => {
+              const linkText = link.textContent?.trim();
+              const href = link.href;
+              if (linkText && href && (href.includes('.pdf') || href.includes('download') || href.includes('datasheet'))) {
+                resources.push(`${linkText}: ${href}`);
+              }
+            });
+            nextElement = nextElement.nextElementSibling;
+          }
+        }
+        
+        product.resources = [...new Set(resources)];
+
+        // Extract Drawing information
+        const drawingSelectors = [
+          'a[href*="drawing"]',
+          'a[href*="Drawing"]',
+          'a[href*=".dwg"]',
+          'a[href*=".pdf"][href*="drawing"]',
+          '.drawing-link',
+          '[class*="drawing"]'
+        ];
+        
+        for (const selector of drawingSelectors) {
+          const drawingLink = document.querySelector(selector) as HTMLAnchorElement;
+          if (drawingLink?.href) {
+            product.drawing = drawingLink.href;
+            break;
+          }
+        }
 
         // Extract price
         const priceSelectors = [
@@ -234,7 +499,12 @@ async function main() {
       console.log(`  - Description: ${productData.description.substring(0, 100)}...`);
       console.log(`  - Specifications: ${productData.specifications?.length || 0} items`);
       console.log(`  - Features: ${productData.features?.length || 0} items`);
+      console.log(`  - Benefits: ${productData.benefits?.length || 0} items`);
+      console.log(`  - Applications: ${productData.applications?.length || 0} items`);
+      console.log(`  - Details: ${productData.details?.length || 0} items`);
+      console.log(`  - Resources: ${productData.resources?.length || 0} items`);
       console.log(`  - Image: ${productData.image ? 'Found' : 'None'}`);
+      console.log(`  - Drawing: ${productData.drawing ? 'Found' : 'None'}`);
 
       return productData;
 
@@ -371,9 +641,52 @@ async function main() {
       
       // Features
       if (product.features && product.features.length > 0) {
-        report.push('KEY FEATURES:');
+        report.push('FEATURES:');
         product.features.forEach(feature => {
           report.push(`  • ${feature}`);
+        });
+        report.push('');
+      }
+
+      // Benefits
+      if (product.benefits && product.benefits.length > 0) {
+        report.push('BENEFITS:');
+        product.benefits.forEach(benefit => {
+          report.push(`  • ${benefit}`);
+        });
+        report.push('');
+      }
+
+      // Applications
+      if (product.applications && product.applications.length > 0) {
+        report.push('APPLICATIONS:');
+        product.applications.forEach(app => {
+          report.push(`  • ${app}`);
+        });
+        report.push('');
+      }
+
+      // Details
+      if (product.details && product.details.length > 0) {
+        report.push('DETAILS:');
+        product.details.forEach(detail => {
+          const wrappedDetail = detail.match(/.{1,80}(\s|$)/g) || [detail];
+          wrappedDetail.forEach((line, index) => {
+            if (index === 0) {
+              report.push(`  • ${line.trim()}`);
+            } else {
+              report.push(`    ${line.trim()}`);
+            }
+          });
+        });
+        report.push('');
+      }
+
+      // Resources
+      if (product.resources && product.resources.length > 0) {
+        report.push('RESOURCES:');
+        product.resources.forEach(resource => {
+          report.push(`  • ${resource}`);
         });
         report.push('');
       }
@@ -384,6 +697,9 @@ async function main() {
       }
       if (product.price) {
         report.push(`PRICE: ${product.price}`);
+      }
+      if (product.drawing) {
+        report.push(`DRAWING: ${product.drawing}`);
       }
       
       report.push('');
