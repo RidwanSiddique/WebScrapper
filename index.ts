@@ -4,6 +4,8 @@ import path from 'path';
 
 const DEBUG = process.env.APP_DEBUG === '1';
 const VISUAL = process.env.APP_VISUAL === '1' || DEBUG;
+// Configuration for pagination
+const MAX_PAGES = parseInt(process.env.MAX_PAGES || '5'); // Default to 5 pages, set MAX_PAGES=1 for single page
 // Pause helper (only active in debug builds)
 const pause = () => { if (DEBUG) debugger; };
 
@@ -49,47 +51,6 @@ async function main() {
   }
 
   pause(); // 1) Pause after browser setup
-
-  console.log('Navigating to GNSS products page...');
-  await page.goto('https://www.calian.com/advanced-technologies/products/gnss-products/#!page=1', { 
-    waitUntil: 'networkidle2',
-    timeout: 30000
-  });
-
-  pause(); // 2) Pause after page loads - inspect the loaded page
-
-  await page.setViewport({ width: 1080, height: 1024 });
-
-  // Wait for the products to load
-  console.log('Waiting for products to load...');
-  await page.waitForSelector('.product-card, .product-item, .card, [class*="product"], .grid-item', { timeout: 10000 }).catch(() => {
-    console.log('No standard product selectors found, will try to find products dynamically...');
-  });
-
-  // Give some time for any dynamic content to load
-  await new Promise(resolve => setTimeout(resolve, 2000));
-
-  // Find all product links on the page
-  console.log('Finding product links...');
-  const productLinks = await page.evaluate(() => {
-    // Focus on actual product links with /gnss_product/ in URL
-    const productElements = Array.from(document.querySelectorAll('a[href*="/gnss_product/"]'));
-    
-    return productElements.map((element, index) => {
-      const link = element as HTMLAnchorElement;
-      const title = element.textContent?.trim() || `Product ${index + 1}`;
-      
-      return {
-        url: link.href,
-        title: title,
-        index: index
-      };
-    }).filter(product => product.url && product.url.includes('/gnss_product/'));
-  });
-
-  console.log(`Found ${productLinks.length} product links to scrape`);
-  
-  const allProducts: ProductData[] = [];
 
   // Function to scrape detailed product information from individual product page
   async function scrapeProductDetails(productUrl: string, productTitle: string, index: number): Promise<ProductData | null> {
@@ -514,34 +475,132 @@ async function main() {
     }
   }
 
-  // Scrape each product individually
-  for (let i = 0; i < productLinks.length; i++) {
-    const link = productLinks[i];
-    const productData = await scrapeProductDetails(link.url, link.title, i);
+  // Function to get product links from a specific page
+  async function getProductLinksFromPage(pageNumber: number): Promise<any[]> {
+    const pageUrl = `https://www.calian.com/advanced-technologies/products/gnss-products/#!page=${pageNumber}`;
     
-    // Filter out broken links and invalid products
-    if (productData && 
-        !productData.title.includes('Page not found') && 
-        !productData.description.includes("This page has either moved or doesn't exist") &&
-        productData.description.length > 50) {
-      allProducts.push(productData);
-      console.log(`✅ Added valid product: ${productData.title}`);
-    } else {
-      console.log(`❌ Filtered out broken/invalid product: ${productData?.title || link.title}`);
-    }
+    console.log(`\n📄 Navigating to page ${pageNumber}: ${pageUrl}`);
+    await page.goto(pageUrl, { 
+      waitUntil: 'networkidle2',
+      timeout: 30000
+    });
 
-    // Add a small delay between requests to be respectful
-    if (i < productLinks.length - 1) {
-      console.log('Waiting before next product...');
-      await new Promise(resolve => setTimeout(resolve, 1000));
+    // Wait for the products to load
+    console.log(`Waiting for products to load on page ${pageNumber}...`);
+    await page.waitForSelector('.product-card, .product-item, .card, [class*="product"], .grid-item', { timeout: 10000 }).catch(() => {
+      console.log('No standard product selectors found, will try to find products dynamically...');
+    });
+
+    // Give some time for any dynamic content to load
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    // Find all product links on this page
+    console.log(`Finding product links on page ${pageNumber}...`);
+    const productLinks = await page.evaluate((pageNum) => {
+      // Focus on actual product links with /gnss_product/ in URL
+      const productElements = Array.from(document.querySelectorAll('a[href*="/gnss_product/"]'));
+      
+      return productElements.map((element, index) => {
+        const link = element as HTMLAnchorElement;
+        const title = element.textContent?.trim() || `Product ${index + 1}`;
+        
+        return {
+          url: link.href,
+          title: title,
+          index: index,
+          pageNumber: pageNum
+        };
+      }).filter(product => product.url && product.url.includes('/gnss_product/'));
+    }, pageNumber);
+
+    console.log(`Found ${productLinks.length} product links on page ${pageNumber}`);
+    return productLinks;
+  }
+
+  // Process pages one by one with complete product scraping per page
+  console.log(`\n🔍 Starting page-by-page scraping (Max pages: ${MAX_PAGES})`);
+  let allProducts: ProductData[] = [];
+  let currentPage = 1;
+  let emptyPagesCount = 0;
+  const maxEmptyPages = 2; // Stop if we encounter 2 consecutive empty pages
+
+  while (currentPage <= MAX_PAGES && emptyPagesCount < maxEmptyPages) {
+    try {
+      console.log(`\n${'='.repeat(60)}`);
+      console.log(`🚀 PROCESSING PAGE ${currentPage} OF ${MAX_PAGES}`);
+      console.log(`${'='.repeat(60)}`);
+      
+      // Get product links for current page
+      const pageLinks = await getProductLinksFromPage(currentPage);
+      
+      if (pageLinks.length === 0) {
+        console.log(`⚠️  No products found on page ${currentPage}`);
+        emptyPagesCount++;
+      } else {
+        emptyPagesCount = 0; // Reset empty page counter
+        console.log(`📋 Found ${pageLinks.length} products on page ${currentPage}`);
+        
+        // Process all products from this page immediately
+        console.log(`\n🔍 Starting individual product scraping for page ${currentPage}...`);
+        
+        for (let i = 0; i < pageLinks.length; i++) {
+          const link = pageLinks[i];
+          
+          console.log(`\n[Page ${currentPage}] [${i + 1}/${pageLinks.length}] Processing: ${link.title}`);
+          
+          const productData = await scrapeProductDetails(link.url, link.title, i);
+          
+          // Filter out broken links and invalid products
+          if (productData && 
+              !productData.title.includes('Page not found') && 
+              !productData.description.includes("This page has either moved or doesn't exist") &&
+              productData.description.length > 50) {
+            allProducts.push(productData);
+            console.log(`✅ Added valid product: ${productData.title}`);
+          } else {
+            console.log(`❌ Filtered out broken/invalid product: ${productData?.title || link.title}`);
+          }
+
+          // Add a small delay between product requests
+          if (i < pageLinks.length - 1) {
+            console.log('Waiting before next product...');
+            await new Promise(resolve => setTimeout(resolve, 1000));
+          }
+        }
+        
+        console.log(`\n✅ PAGE ${currentPage} COMPLETE: Processed ${pageLinks.length} products, ${allProducts.filter(p => p.url && pageLinks.some(link => link.url === p.url)).length} valid products added`);
+      }
+      
+      currentPage++;
+      
+      // Add pause between pages
+      if (currentPage <= MAX_PAGES && emptyPagesCount < maxEmptyPages) {
+        console.log(`\n⏸️  PAUSING BEFORE NEXT PAGE...`);
+        console.log(`📊 Current progress: ${allProducts.length} total valid products collected so far`);
+        console.log(`⏳ Waiting 3 seconds before proceeding to page ${currentPage}...`);
+        await new Promise(resolve => setTimeout(resolve, 3000));
+      }
+      
+    } catch (error) {
+      console.error(`Error processing page ${currentPage}:`, error);
+      emptyPagesCount++;
+      currentPage++;
     }
   }
 
+  const finalProductsCount = allProducts.length;
+
+  console.log(`\n📊 Multi-page scraping complete:`);
+  console.log(`   - Pages processed: ${currentPage - 1}`);
+  console.log(`   - Total valid products scraped: ${finalProductsCount}`);
+
   const products = allProducts;
 
-  console.log(`Found ${products.length} products on the page`);
+  console.log(`\n📊 FINAL SCRAPING SUMMARY:`);
+  console.log(`   - Pages processed: ${currentPage - 1}`);
+  console.log(`   - Total valid products scraped: ${products.length}`);
   
-  // Log each product
+  // Log each product summary
   products.forEach((product, index) => {
     console.log(`\n--- Product ${index + 1} ---`);
     console.log(`Title: ${product.title}`);
@@ -553,6 +612,8 @@ async function main() {
       console.log(`Specifications: ${product.specifications.slice(0, 3).join(', ')}${product.specifications.length > 3 ? '...' : ''}`);
     }
   });
+
+  pause(); // 3) Pause after scraping - inspect the results
 
   // Create output directory
   const outputDir = path.join(process.cwd(), 'scraped_data');
