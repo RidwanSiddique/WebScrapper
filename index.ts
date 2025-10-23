@@ -4,6 +4,7 @@ import path from 'path';
 
 const DEBUG = process.env.APP_DEBUG === '1';
 const VISUAL = process.env.APP_VISUAL === '1' || DEBUG;
+const BOT_MITIGATION = process.env.BOT_MITIGATION === '1';
 // Configuration for pagination
 const MAX_PAGES = parseInt(process.env.MAX_PAGES || '5'); // Default to 5 pages, set MAX_PAGES=1 for single page
 // Pause helper (only active in debug builds)
@@ -26,14 +27,79 @@ interface ProductData {
   drawing?: string;
 }
 
+// Bot mitigation utilities
+const getRandomUserAgent = () => {
+  const userAgents = [
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36',
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36',
+    'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.1 Safari/605.1.15',
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/121.0'
+  ];
+  return userAgents[Math.floor(Math.random() * userAgents.length)];
+};
+
+const getRandomViewport = () => {
+  const viewports = [
+    { width: 1920, height: 1080 },
+    { width: 1366, height: 768 },
+    { width: 1440, height: 900 },
+    { width: 1536, height: 864 },
+    { width: 1280, height: 720 },
+    { width: 1600, height: 900 }
+  ];
+  return viewports[Math.floor(Math.random() * viewports.length)];
+};
+
+const getRandomDelay = (min: number, max: number) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+const humanLikeDelay = () => {
+  return new Promise(resolve => setTimeout(resolve, getRandomDelay(1000, 3000)));
+};
+
 // Wrap everything in a main function for better error handling
 async function main() {
   const browser = await puppeteer.launch({
-    headless: !VISUAL,                // See the browser in visual/debug mode, headless in prod
-    devtools: DEBUG,                  // Open Chrome DevTools window (only in debug mode)
-    slowMo: VISUAL ? 200 : 0,         // Slow down steps so you can watch them
-    channel: 'chrome',                // Prefer system Chrome (Puppeteer ≥21). Remove if you want bundled Chromium.
-    // dumpio: DEBUG,                 // (Browser logs to Node stdio) enable when needed
+    headless: !VISUAL,                   // See the browser in visual/debug mode, headless in prod
+    devtools: DEBUG,                     // Open Chrome DevTools window (only in debug mode)
+    slowMo: VISUAL ? getRandomDelay(100, 300) : 0, // Random slow motion for more human-like behavior
+    channel: 'chrome',                   // Prefer system Chrome (Puppeteer ≥21). Remove if you want bundled Chromium.
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-accelerated-2d-canvas',
+      '--no-first-run',
+      '--no-zygote',
+      '--disable-gpu',
+      '--disable-web-security',
+      '--disable-features=VizDisplayCompositor',
+      '--disable-blink-features=AutomationControlled', // Hide webdriver property
+      '--disable-background-networking',
+      '--disable-background-timer-throttling',
+      '--disable-renderer-backgrounding',
+      '--disable-backgrounding-occluded-windows',
+      '--disable-client-side-phishing-detection',
+      '--disable-component-extensions-with-background-pages',
+      '--disable-default-apps',
+      '--disable-extensions',
+      '--disable-hang-monitor',
+      '--disable-ipc-flooding-protection',
+      '--disable-popup-blocking',
+      '--disable-prompt-on-repost',
+      '--disable-sync',
+      '--metrics-recording-only',
+      '--no-default-browser-check',
+      '--safebrowsing-disable-auto-update',
+      '--enable-automation=false',
+      '--password-store=basic',
+      '--use-mock-keychain'
+    ],
+    // dumpio: DEBUG,                    // (Browser logs to Node stdio) enable when needed
   });
 
   if (DEBUG) {
@@ -42,6 +108,148 @@ async function main() {
   }
 
   const page = await browser.newPage();
+
+  if (BOT_MITIGATION) {
+    console.log('🛡️  Bot mitigation enabled - applying stealth techniques...');
+    
+    // Bot mitigation: Set random user agent
+    const randomUserAgent = getRandomUserAgent();
+    await page.setUserAgent(randomUserAgent);
+    console.log(`🤖 Using User Agent: ${randomUserAgent}`);
+
+    // Bot mitigation: Set random viewport
+    const randomViewport = getRandomViewport();
+    await page.setViewport(randomViewport);
+    console.log(`📱 Using Viewport: ${randomViewport.width}x${randomViewport.height}`);
+  } else {
+    // Default viewport for non-stealth mode
+    await page.setViewport({ width: 1080, height: 1024 });
+  }
+
+  if (BOT_MITIGATION) {
+    // Bot mitigation: Remove webdriver traces
+    await page.evaluateOnNewDocument(() => {
+      // Remove webdriver property
+      Object.defineProperty(navigator, 'webdriver', {
+        get: () => undefined,
+      });
+
+      // Mock plugins
+      Object.defineProperty(navigator, 'plugins', {
+        get: () => [1, 2, 3, 4, 5],
+      });
+
+      // Mock languages
+      Object.defineProperty(navigator, 'languages', {
+        get: () => ['en-US', 'en'],
+      });
+
+      // Mock permissions
+      const originalQuery = (window.navigator.permissions as any).query;
+      (window.navigator.permissions as any).query = (parameters: any) => (
+        parameters.name === 'notifications' ?
+          Promise.resolve({ state: 'granted' }) :
+          originalQuery(parameters)
+      );
+
+      // Mock chrome runtime
+      if (!(window as any).chrome) {
+        (window as any).chrome = {};
+      }
+      if (!(window as any).chrome.runtime) {
+        (window as any).chrome.runtime = {};
+      }
+    });
+
+    // Add visual cursor for stealth mode (only in visual mode)
+    if (VISUAL) {
+      await page.evaluateOnNewDocument(() => {
+        // Create a custom cursor element
+        const cursor = document.createElement('div');
+        cursor.id = 'bot-cursor';
+        cursor.style.cssText = `
+          position: fixed;
+          width: 20px;
+          height: 20px;
+          background: rgba(255, 0, 0, 0.7);
+          border: 2px solid #ff0000;
+          border-radius: 50%;
+          pointer-events: none;
+          z-index: 999999;
+          transition: all 0.1s ease;
+          box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        `;
+        
+        // Add cursor to page when DOM is ready
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', () => {
+            document.body.appendChild(cursor);
+          });
+        } else {
+          document.body.appendChild(cursor);
+        }
+
+        // Track mouse movements and update cursor position
+        let lastX = 0, lastY = 0;
+        const updateCursor = (x: number, y: number) => {
+          const cursor = document.getElementById('bot-cursor');
+          if (cursor) {
+            cursor.style.left = (x - 10) + 'px';
+            cursor.style.top = (y - 10) + 'px';
+            lastX = x;
+            lastY = y;
+          }
+        };
+
+        // Override mouse events to show our custom cursor
+        const originalMouseMove = document.onmousemove;
+        document.addEventListener('mousemove', (e) => {
+          updateCursor(e.clientX, e.clientY);
+        });
+
+        // Initialize cursor position
+        setTimeout(() => updateCursor(100, 100), 100);
+      });
+    }
+
+    // Bot mitigation: Set extra headers
+    await page.setExtraHTTPHeaders({
+      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+      'Accept-Language': 'en-US,en;q=0.9',
+      'Accept-Encoding': 'gzip, deflate, br',
+      'DNT': '1',
+      'Connection': 'keep-alive',
+      'Upgrade-Insecure-Requests': '1',
+    });
+
+        // Bot mitigation: Block tracking and unnecessary resources
+    await page.setRequestInterception(true);
+    page.on('request', (req) => {
+      const resourceType = req.resourceType();
+      const url = req.url();
+      
+      // Block tracking scripts and analytics
+      if (url.includes('google-analytics') || 
+          url.includes('googletagmanager') ||
+          url.includes('facebook.com') ||
+          url.includes('linkedin.com/analytics') ||
+          url.includes('doubleclick') ||
+          url.includes('googlesyndication') ||
+          url.includes('amazon-adsystem') ||
+          url.includes('outbrain') ||
+          url.includes('taboola')) {
+        req.abort();
+      }
+      // Optionally block fonts and stylesheets for faster loading (comment out if you want full styling)
+      else if (resourceType === 'font') {
+        req.abort();
+      }
+      // Allow images, documents, scripts, and other important resources
+      else {
+        req.continue();
+      }
+    });
+  }
 
   if (VISUAL || DEBUG) {
     // Show browser activity logs in visual/debug mode
@@ -58,13 +266,72 @@ async function main() {
       console.log(`\n--- Scraping Product ${index + 1}: ${productTitle} ---`);
       console.log(`Navigating to: ${productUrl}`);
       
+      // Human-like delay before navigation (only in stealth mode)
+      if (BOT_MITIGATION) {
+        const navigationDelay = getRandomDelay(1500, 3500);
+        console.log(`⏳ Human-like navigation delay: ${navigationDelay}ms`);
+        await new Promise(resolve => setTimeout(resolve, navigationDelay));
+      }
+      
       await page.goto(productUrl, { 
         waitUntil: 'networkidle2',
         timeout: 30000 
       });
 
-      // Wait for content to load
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      if (BOT_MITIGATION) {
+        // Random mouse movement to simulate reading with visual feedback
+        const mouseX = getRandomDelay(100, 400);
+        const mouseY = getRandomDelay(100, 300);
+        console.log(`🖱️  Moving mouse to (${mouseX}, ${mouseY}) to simulate reading behavior`);
+        await page.mouse.move(mouseX, mouseY);
+        
+        // Update visual cursor if in visual mode
+        if (VISUAL) {
+          await page.evaluate((x, y) => {
+            const cursor = document.getElementById('bot-cursor');
+            if (cursor) {
+              cursor.style.left = (x - 10) + 'px';
+              cursor.style.top = (y - 10) + 'px';
+              cursor.style.background = 'rgba(0, 255, 0, 0.7)'; // Green for reading
+              cursor.style.borderColor = '#00ff00';
+            }
+          }, mouseX, mouseY);
+        }
+        
+        // Wait for content to load with random delay
+        const contentDelay = getRandomDelay(2000, 4000);
+        console.log(`⏳ Content analysis delay: ${contentDelay}ms`);
+        await new Promise(resolve => setTimeout(resolve, contentDelay));
+
+        // Simulate scrolling behavior with visual feedback
+        console.log(`📜 Scrolling page to simulate reading behavior`);
+        await page.evaluate(() => {
+          const scrollHeight = Math.floor(Math.random() * 500) + 200;
+          window.scrollBy(0, scrollHeight);
+        });
+        await new Promise(resolve => setTimeout(resolve, getRandomDelay(500, 1200)));
+
+        // Another random mouse movement with visual feedback
+        const mouseX2 = getRandomDelay(200, 600);
+        const mouseY2 = getRandomDelay(200, 500);
+        console.log(`🖱️  Moving mouse to (${mouseX2}, ${mouseY2}) for continued interaction`);
+        await page.mouse.move(mouseX2, mouseY2);
+        
+        if (VISUAL) {
+          await page.evaluate((x, y) => {
+            const cursor = document.getElementById('bot-cursor');
+            if (cursor) {
+              cursor.style.left = (x - 10) + 'px';
+              cursor.style.top = (y - 10) + 'px';
+              cursor.style.background = 'rgba(0, 0, 255, 0.7)'; // Blue for interaction
+              cursor.style.borderColor = '#0000ff';
+            }
+          }, mouseX2, mouseY2);
+        }
+      } else {
+        // Standard delay for non-stealth mode
+        await new Promise(resolve => setTimeout(resolve, 2000));
+      }
 
       // Extract comprehensive product data from the product page
       const productData = await page.evaluate((url, title) => {
@@ -480,19 +747,74 @@ async function main() {
     const pageUrl = `https://www.calian.com/advanced-technologies/products/gnss-products/#!page=${pageNumber}`;
     
     console.log(`\n📄 Navigating to page ${pageNumber}: ${pageUrl}`);
+    
+    // Add human-like delay before navigation (only in stealth mode)
+    if (BOT_MITIGATION) {
+      console.log(`⏳ Human-like delay before navigation...`);
+      await humanLikeDelay();
+    }
+    
     await page.goto(pageUrl, { 
       waitUntil: 'networkidle2',
       timeout: 30000
     });
 
-    // Wait for the products to load
+    // Wait for the products to load with random delay
     console.log(`Waiting for products to load on page ${pageNumber}...`);
     await page.waitForSelector('.product-card, .product-item, .card, [class*="product"], .grid-item', { timeout: 10000 }).catch(() => {
       console.log('No standard product selectors found, will try to find products dynamically...');
     });
 
-    // Give some time for any dynamic content to load
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    // Give some time for any dynamic content to load with conditional random delay
+    if (BOT_MITIGATION) {
+      const loadDelay = getRandomDelay(2000, 4000);
+      console.log(`⏳ Random content load delay: ${loadDelay}ms`);
+      await new Promise(resolve => setTimeout(resolve, loadDelay));
+      
+      // Add random mouse movements to simulate human behavior with visual feedback
+      console.log(`🖱️  Simulating human browsing behavior on page ${pageNumber}`);
+      
+      // First movement - scanning the page
+      const scanX1 = getRandomDelay(100, 800);
+      const scanY1 = getRandomDelay(100, 600);
+      console.log(`🔍 Scanning page - move 1: (${scanX1}, ${scanY1})`);
+      await page.mouse.move(scanX1, scanY1);
+      
+      if (VISUAL) {
+        await page.evaluate((x, y) => {
+          const cursor = document.getElementById('bot-cursor');
+          if (cursor) {
+            cursor.style.left = (x - 10) + 'px';
+            cursor.style.top = (y - 10) + 'px';
+            cursor.style.background = 'rgba(255, 165, 0, 0.7)'; // Orange for browsing
+            cursor.style.borderColor = '#ff8c00';
+          }
+        }, scanX1, scanY1);
+      }
+      
+      await new Promise(resolve => setTimeout(resolve, getRandomDelay(500, 1000)));
+      
+      // Second movement - looking at products
+      const scanX2 = getRandomDelay(200, 900);
+      const scanY2 = getRandomDelay(200, 700);
+      console.log(`🔍 Scanning products - move 2: (${scanX2}, ${scanY2})`);
+      await page.mouse.move(scanX2, scanY2);
+      
+      if (VISUAL) {
+        await page.evaluate((x, y) => {
+          const cursor = document.getElementById('bot-cursor');
+          if (cursor) {
+            cursor.style.left = (x - 10) + 'px';
+            cursor.style.top = (y - 10) + 'px';
+            cursor.style.background = 'rgba(128, 0, 128, 0.7)'; // Purple for product scanning
+            cursor.style.borderColor = '#800080';
+          }
+        }, scanX2, scanY2);
+      }
+    } else {
+      // Standard delay for non-stealth mode
+      await new Promise(resolve => setTimeout(resolve, 2000));
+    }
 
     // Find all product links on this page
     console.log(`Finding product links on page ${pageNumber}...`);
@@ -561,10 +883,16 @@ async function main() {
             console.log(`❌ Filtered out broken/invalid product: ${productData?.title || link.title}`);
           }
 
-          // Add a small delay between product requests
+          // Add conditional delay between product requests
           if (i < pageLinks.length - 1) {
-            console.log('Waiting before next product...');
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            if (BOT_MITIGATION) {
+              const betweenProductDelay = getRandomDelay(2000, 5000);
+              console.log(`⏳ Human-like delay before next product: ${betweenProductDelay}ms`);
+              await new Promise(resolve => setTimeout(resolve, betweenProductDelay));
+            } else {
+              console.log('Waiting before next product...');
+              await new Promise(resolve => setTimeout(resolve, 1000));
+            }
           }
         }
         
@@ -573,12 +901,18 @@ async function main() {
       
       currentPage++;
       
-      // Add pause between pages
+      // Add conditional pause between pages
       if (currentPage <= MAX_PAGES && emptyPagesCount < maxEmptyPages) {
         console.log(`\n⏸️  PAUSING BEFORE NEXT PAGE...`);
         console.log(`📊 Current progress: ${allProducts.length} total valid products collected so far`);
-        console.log(`⏳ Waiting 3 seconds before proceeding to page ${currentPage}...`);
-        await new Promise(resolve => setTimeout(resolve, 3000));
+        if (BOT_MITIGATION) {
+          const betweenPageDelay = getRandomDelay(5000, 10000);
+          console.log(`⏳ Human-like delay before proceeding to page ${currentPage}: ${betweenPageDelay}ms`);
+          await new Promise(resolve => setTimeout(resolve, betweenPageDelay));
+        } else {
+          console.log(`⏳ Waiting 3 seconds before proceeding to page ${currentPage}...`);
+          await new Promise(resolve => setTimeout(resolve, 3000));
+        }
       }
       
     } catch (error) {

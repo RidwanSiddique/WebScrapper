@@ -1,20 +1,20 @@
 ================================================================================
 CALIAN GNSS PRODUCTS - DETAILED REPORT
 ================================================================================
-Generated: 10/22/2025, 4:44:10 PM
-Total Valid Products: 15
+Generated: 10/23/2025, 10:57:24 AM
+Total Valid Products: 26
 ================================================================================
 
 EXECUTIVE SUMMARY
 ----------------------------------------
-This report contains detailed information about 15 GNSS products from Calian's portfolio.
+This report contains detailed information about 26 GNSS products from Calian's portfolio.
 The products include antennas, smart GNSS solutions, SDK packages, and specialized equipment
 for various applications including automotive, aerospace, maritime, and precision agriculture.
 
 PRODUCT CATEGORIES OVERVIEW
 ----------------------------------------
-Smart Antennas: 7 products
-Precision Antennas: 7 products
+Smart Antennas: 12 products
+Precision Antennas: 9 products
 Anti-Jamming Solutions: 2 products
 Space-Qualified: 1 products
 Passive Antennas: 1 products
@@ -1485,19 +1485,897 @@ IMAGE: https://sites.calian.com/app/uploads/sites/8/2025/07/TP5794-PTONE-SDK-Cov
 
 ================================================================================
 
+16. TW3885TL MULTI-CONSTELLATION DUAL-BAND TIMING ANTENNA (BUILT-IN LIGHTNING ARRESTOR)
+--------------------------------------------------------------------------------------
+Product ID: tw3885tl-multi-constellation-dual-band-timing-antenna-built-in-lightning-arrestor
+URL: https://www.calian.com/advanced-technologies/gnss_product/tw3885tl-multi-constellation-dual-band-timing-antenna-built-in-lightning-arrestor/
+
+DESCRIPTION:
+  The TW3885TL is a precision-tuned dual-band, Accutenna® technology, timing
+  antenna providing GPS/QZSS-L1/L5, GLONASS-G1/G3, Galileo-E1/E5a/E5b,
+  BeiDou-B1/B2a/B2 and NavIC-L5, including the satellite-based augmentation system
+  (SBAS) available in the region of operation [WAAS (North America), EGNOS
+  (Europe), MSAS (Japan), or GAGAN (India)].
+
+TECHNICAL SPECIFICATIONS:
+  • CoverageMountAmplifier GainConnector Options
+  • GPS/QZSS-L1,GPS/QZSS-L5,GLONASS-G1,GLONASS-G3,Galileo-E1,Galileo-E5a,Galileo-E5b,BeiDou-B1,BeiDou-B2a,BeiDou-B2b,NavIC-L5Through-Hole40 dBMany Options, Please Inquire,TNC Female,N-Type Female
+
+FEATURES:
+  • Very low noise preamp (< 2.5 dB typ.)
+  • Low axial ratio (< 2.0 dB typ.)
+  • Tight phase centre variation
+  • High-gain LNA (40 dB typ.)
+  • Low current (32 mA typ.)
+  • Invariant performance from 2.5 to 16 VDC
+  • 5 kA, 8/20 μs built-in lightning arrestor
+
+BENEFITS:
+  • Excellent multipath rejection
+  • Increased system accuracy
+  • Excellent signal-to-noise ratio
+  • Built-in surge protection
+  • CE RED, RoHS, and REACH compliant
+
+APPLICATIONS:
+  • Precise Timing
+
+DETAILS:
+  • Part Number: 33-3885TL-xx-yy-zzzz
+  • Calian’s eXtended Filter (XF) antenna technology has been designed to mitigate
+    out-ofband signals and prevent GNSS antenna saturation. The radio frequency
+    spectrum has become more congested as new LTE bands are activated and their
+    signals or harmonic frequencies [e.g. 800MHz x 2 = 1600MHz (GLONASS-G1)] can
+    affect GNSS antennas and receivers. In North America, planned Ligado signals at
+    1525 – 1536 MHz can especially impact GNSS antennas that support space-based
+    L-band Corrections (1539 – 1559 MHz). New LTE signals in Europe [Band 32 (1452 –
+    1496 MHz)] and Japan [Bands 11 and 21 (1476 – 1511 MHz)] have also been observed
+    to interfere with GNSS signals. In addition, Inmarsat satellite communication
+    (uplink: 1626.5 – 1660.5 MHz) can also affect GNSS signals. Calian’s custom XF
+    filtering mitigates all existing signals and new Ligado and LTE signals,
+    enabling the antennas and attached GNSS receivers to perform optimally.
+  • The TW3885TL features a precision-tuned, twin circular dual-feed, stacked patch
+    element. The signals from the two orthogonal feeds are combined in a hybrid
+    combiner, amplified in a wideband LNA, then band-split for narrow filtering in
+    each band and further amplified prior to recombination at the output. The
+    TW3885TL offers excellent axial ratio and a tightly grouped phase centre
+    variation.
+  • Ideal for timing, the TW3885TL provides superior multipath signal rejection, a
+    linear phase response, and tight phase centre variation (PCV). In addition, a
+    built-in lightning arrestor provides output protection from lightning transients
+    and surges up to 5 kA over 8/20 μs.
+  • The TW3885TL is housed in a through-hole mount, weatherproof enclosure for
+    permanent installations. L-bracket (PN 23-0040-0) or pipe mount (23-0065-0) are
+    available. A 100-mm ground plane is provided for all installations.
+  • For more than 40 years, Calian has been solving the world's most complex
+    problems by pairing the brightest minds with powerful technology. Calian's
+    innovative solutions move the world forward—from the satellites in space that
+    power our communications to the farms that grow our food, the medical
+    professionals, hospitals and clinics that take care of us, and the governments,
+    schools and private companies that make the world better every day.
+  • Calian creates advanced solutions for the space, defence and wired and
+    terrestrial wireless sectors. Our products and services span a wide range of
+    applications, from Earth stations and satellite communications, to cable access
+    and wired and terrestrial wireless products, to defence manufacturing and
+    engineering.
+  • Calian provides custom communication gateways for internet of things (IoT) and
+    aeronautical applications.
+  • Calian's satellite communications and ground systems support ensures your space
+    operations are successful
+  • Reach out to us to learn how our innovative solutions can help you solve your
+    most complex challenges.
+  • Our vision builds on our mission, values, historical commitment to social
+    responsibility and key competencies. It provides a framework and focus for our
+    activities and corporate communications related to ESG (Environmental Social
+    Governance).
+  • Their expertise enriches our solutions, and hiring military spouses is our
+    heartfelt way of giving back to the defence community. We’re committed to being
+    there for you, in and out of uniform.
+  • Our partnership with the Canadian Forces Morale and Welfare Services ensures
+    that military family members are connected with family doctors, hassle-free.
+  • We are woven into our community’s fabric, our support extending to renowned
+    organizations and causes. We’re not just about business; we are about building a
+    supportive and resilient community together.
+  • Our contributions to significant research projects and our focus on
+    environmental safety are unwavering. We’re front-runners in compliance with
+    environmental laws and continually innovate to lessen our ecological footprint.
+  • With a published Indigenous engagement policy, Calian sets out the framework and
+    guidelines for all Calian business activities while being wholly committed to
+    meeting—even exceeding—the five per cent Indigenous participation requirement on
+    all Federal contracts.
+
+IMAGE: https://sites.calian.com/app/uploads/sites/8/2025/03/TW3000-Conical-White-Cable-GroundPlane-final.png
+
+================================================================================
+
+17. TP5387-SWNAV HIGH-PRECISION SMART L1/L5 GNSS SDK
+---------------------------------------------------
+Product ID: tp5387-swnav-high-precision-smart-l1-l5-gnss-sdk
+URL: https://www.calian.com/advanced-technologies/gnss_product/tp5387-swnav-high-precision-smart-l1-l5-gnss-sdk/
+
+DESCRIPTION:
+  Calian’s TW5387 High Precision Tallysman Smart L1/L5 GNSS Antenna with Swift
+  Navigation Skylark Precise Positioning Service is the Plug and Play solution for
+  L1/L5 and cPNT applications.   BUY ONLINE.
+
+TECHNICAL SPECIFICATIONS:
+  • CoverageMountAmplifier GainConnector Options
+  • GPS/QZSS-L1,GPS/QZSS-L5,Galileo-E1,Galileo-E5a,BeiDou-B1,BeiDou-B2aThrough-Hole dBRJ45
+
+DETAILS:
+  • Ordering Information:
+  • 33-TP5387SDK-0: Calian 33-5387-07-10-05-PC0 (RS-422)  + 33-0095-10 USB to serial
+    bridge
+  • 33-TP5387SDK-2: Calian 33-5387-27-10-05-PC0 (RS-232) + 33-0095-13 USB to serial
+    bridge
+  • Calian’s High Precision Tallysman Smart GNSS antennas integrate advanced
+    receivers with High Precision Tallysman GNSS antennas, connecting Position,
+    Navigation and Timing resources to host systems over digital interfaces.  The
+    TW5387 Software Development Kit (SDK) for Swift Navigation's Skylark Precise
+    Positioning Service supports the TW5387 High Precision L1/L5 Smart GNSS Antenna,
+    which incorporates a Quectel LG69TAP receiver module with onboard ST TESEO V
+    receiver and Inertial Measurement Unit (IMU). The SDK includes Calian's GNSS
+    dashboard/evaluation software TruPrecision. It also includes 6 months of
+    complementary access to Swift Navigations’s Skylark Cx Precise Positioning
+    Service with an easy process for quickly applying Skylark corrections to your
+    GNSS Antenna.
+  • Swift Navigation’s Skylark® Precise Positioning Service is a global, cloud-based
+    GNSS corrections service that delivers reliable precision continent-wide.
+    Designed to meet diverse application needs, Skylark is available in three
+    distinct variants—Skylark Cx, Nx RTK, and Dx—each optimized for specific use
+    cases, ensuring the right balance of performance and practicality.
+  • Skylark Cx is a PPP-RTK corrections service that delivers uniform
+    centimeter-level accuracy across continents. With 3–7 cm accuracy and a fast
+    convergence time of under 20 seconds, its performance remains consistent,
+    regardless of distance from base stations—providing seamless accuracy at a
+    national and continental scale.
+  • The TruPrecison SDK application is a Windows service which provides an
+    autonomous connection to stream Skylark corrections to the TW5387 Smart Antenna
+    via a USB to Serial Bridge which also provides a Virtual COM Port to allow
+    customers to connect their existing applications to the Calian Smart GNSS
+    Antenna  high precision “corrected” position data output as NMEA formatted
+    messages..
+  • For more than 40 years, Calian has been solving the world's most complex
+    problems by pairing the brightest minds with powerful technology. Calian's
+    innovative solutions move the world forward—from the satellites in space that
+    power our communications to the farms that grow our food, the medical
+    professionals, hospitals and clinics that take care of us, and the governments,
+    schools and private companies that make the world better every day.
+  • Calian creates advanced solutions for the space, defence and wired and
+    terrestrial wireless sectors. Our products and services span a wide range of
+    applications, from Earth stations and satellite communications, to cable access
+    and wired and terrestrial wireless products, to defence manufacturing and
+    engineering.
+  • Calian provides custom communication gateways for internet of things (IoT) and
+    aeronautical applications.
+  • Calian's satellite communications and ground systems support ensures your space
+    operations are successful
+  • Reach out to us to learn how our innovative solutions can help you solve your
+    most complex challenges.
+  • Our vision builds on our mission, values, historical commitment to social
+    responsibility and key competencies. It provides a framework and focus for our
+    activities and corporate communications related to ESG (Environmental Social
+    Governance).
+  • Their expertise enriches our solutions, and hiring military spouses is our
+    heartfelt way of giving back to the defence community. We’re committed to being
+    there for you, in and out of uniform.
+  • Our partnership with the Canadian Forces Morale and Welfare Services ensures
+    that military family members are connected with family doctors, hassle-free.
+  • We are woven into our community’s fabric, our support extending to renowned
+    organizations and causes. We’re not just about business; we are about building a
+    supportive and resilient community together.
+  • Our contributions to significant research projects and our focus on
+    environmental safety are unwavering. We’re front-runners in compliance with
+    environmental laws and continually innovate to lessen our ecological footprint.
+  • With a published Indigenous engagement policy, Calian sets out the framework and
+    guidelines for all Calian business activities while being wholly committed to
+    meeting—even exceeding—the five per cent Indigenous participation requirement on
+    all Federal contracts.
+
+IMAGE: https://sites.calian.com/app/uploads/sites/8/2025/02/TP5387SDK-SWNAV-inset-pic-1.png
+
+================================================================================
+
+18. HCS885XF-SWNAV L1/L5 SMART GNSS HELICAL SDK
+----------------------------------------------
+Product ID: hcs885xf-swnav-l1-l5-smart-gnss-helical-sdk
+URL: https://www.calian.com/advanced-technologies/gnss_product/hcs885xf-swnav-l1-l5-smart-gnss-helical-sdk/
+
+DESCRIPTION:
+  Calian’s HCS885XF Smart GNSS Helical Antenna is the Plug and Play, light weight,
+  low power L1/L5 solution for Handheld Devices, Robots and Drones.  BUY ONLINE.
+
+TECHNICAL SPECIFICATIONS:
+  • CoverageMountAmplifier GainConnector Options
+  • GPS/QZSS-L1 C/A,GPS/QZSS-L5,GLONASS-L1OF,Galileo E1-B/C,Galileo E5a,BeiDou B1l,BeiDou B2a,BeiDou B2aSurface Mount dB 6 Position Receptacle Connector JST, 1.25 mm
+
+DETAILS:
+  • Ordering Information:
+  • 33-HCS885XFSDK-4 (CMOS)
+  • 33-HCA885XFSDK-2 (RS-232)
+  • The HCS885XFSDK Smart GNSS Helical SDK is the best way to fast track precise
+    location and heading in your project. The L5 enhanced signal architecture with
+    stronger broadcast signal offers more precise standard localization and improved
+    multi-path mitigation while operating in an ITU/ARNS aviation band with
+    regulatory interference protection. The SDK includes one* HCS885XF Smart GNSS
+    Precise Heading Helical Antenna with serial to USB bridge to connect to your PC.
+    TruPrecision software simplifies the User Interface to the antenna’s GNSS
+    receiver, and provides extras such as logging tools, GNSS signal strength graphs
+    and message routing for sharing RTCM between base and rover antenna pairs across
+    the internet. It also includes a 6 month complementary access to Swift
+    Navigation’s Skylark Cx Corrections, with an easy process for quickly applying
+    corrections (RTK or PPP-RTK) to the antenna. ROS2® drivers also available.
+  • Swift Navigation’s Skylark® Precise Positioning Service is a global, cloud-based
+    GNSS corrections service that delivers reliable precision continent-wide.
+    Designed to meet diverse application needs, Skylark is available in three
+    distinct variants—Skylark Cx, Nx RTK, and Dx—each optimized for specific use
+    cases, ensuring the right balance of performance and practicality.
+  • Skylark Cx is a PPP-RTK corrections service that delivers uniform
+    centimeter-level accuracy across continents. With 3–7 cm accuracy and a fast
+    convergence time of under 20 seconds, its performance remains consistent,
+    regardless of distance from base stations—providing seamless accuracy at a
+    national and continental scale.
+  • The TruPrecison SDK application is a Windows application which provides an NTRIP
+    connection to stream Skylark corrections to the HCS885XF  Smart Antenna via USB,
+    which also provides a Virtual COM Port to allow customers to connect their
+    existing applications to the Tallysman HCS885XF Smart GNSS Precise Heading
+    Antenna high precision “corrected” position data output. The position data may
+    be either NMEA or UBX formatted messages.  ROS2® Drivers are available for
+    integration with ROS2 open framework projects.
+  • For more than 40 years, Calian has been solving the world's most complex
+    problems by pairing the brightest minds with powerful technology. Calian's
+    innovative solutions move the world forward—from the satellites in space that
+    power our communications to the farms that grow our food, the medical
+    professionals, hospitals and clinics that take care of us, and the governments,
+    schools and private companies that make the world better every day.
+  • Calian creates advanced solutions for the space, defence and wired and
+    terrestrial wireless sectors. Our products and services span a wide range of
+    applications, from Earth stations and satellite communications, to cable access
+    and wired and terrestrial wireless products, to defence manufacturing and
+    engineering.
+  • Calian provides custom communication gateways for internet of things (IoT) and
+    aeronautical applications.
+  • Calian's satellite communications and ground systems support ensures your space
+    operations are successful
+  • Reach out to us to learn how our innovative solutions can help you solve your
+    most complex challenges.
+  • Our vision builds on our mission, values, historical commitment to social
+    responsibility and key competencies. It provides a framework and focus for our
+    activities and corporate communications related to ESG (Environmental Social
+    Governance).
+  • Their expertise enriches our solutions, and hiring military spouses is our
+    heartfelt way of giving back to the defence community. We’re committed to being
+    there for you, in and out of uniform.
+  • Our partnership with the Canadian Forces Morale and Welfare Services ensures
+    that military family members are connected with family doctors, hassle-free.
+  • We are woven into our community’s fabric, our support extending to renowned
+    organizations and causes. We’re not just about business; we are about building a
+    supportive and resilient community together.
+  • Our contributions to significant research projects and our focus on
+    environmental safety are unwavering. We’re front-runners in compliance with
+    environmental laws and continually innovate to lessen our ecological footprint.
+  • With a published Indigenous engagement policy, Calian sets out the framework and
+    guidelines for all Calian business activities while being wholly committed to
+    meeting—even exceeding—the five per cent Indigenous participation requirement on
+    all Federal contracts.
+
+IMAGE: https://sites.calian.com/app/uploads/sites/8/2025/02/HCS885XF-SWNAV-SDK-Cover.png
+
+================================================================================
+
+19. TP5794-SWNAV PRECISE HEADING SDK
+-----------------------------------
+Product ID: tp5794-swnav-precise-heading-sdk
+URL: https://www.calian.com/advanced-technologies/gnss_product/tp5794-swnav-precise-heading-sdk/
+
+DESCRIPTION:
+  Calian’s TW5794 Smart GNSS Precise Heading Antenna with Swift Navigation Skylark
+  Precise Positioning Service is the Plug and Play solution for  Precise Heading
+  evaluation.   BUY ONLINE.
+
+TECHNICAL SPECIFICATIONS:
+  • CoverageMountAmplifier GainConnector Options
+  • GPS/QZSS-L1,GPS/QZSS-L2,GLONASS-G1,GLONASS-G2,Galileo-E1,Galileo-E5b,BeiDou-B1,BeiDou-B2Through-Hole dBUSB 2.0,RJ45
+
+DETAILS:
+  • Ordering Information:
+  • 33-TP5794SDK-SWNAV-1 (33-5794-19-10-0S – USB);
+  • 33-TP5794SDK-SWNAV-2 (33-5794-29-10-05 – RS-232 + 33-0095-16 Serial to USB
+    Converter)
+  • The TW5794 Precise Heading SDK is the best way to get started.  It includes a
+    TW5794 Smart GNSS Precise Heading Antenna with USB to connect into your PC.
+    TruPrecision software simplifies the User Interface to the antenna’s GNSS
+    receiver, and provides extras such as logging tools, GNSS signal strength
+    graphs, and tools for local Base/Rover RTK.  It also includes 6 months of
+    complementary access to Swift Navigation’s Skylark Precise Positioning Service
+    with an easy process for quickly applying Skylark corrections to your SDK
+    antenna.
+  • Swift Navigation’s Skylark® Precise Positioning Service is a global, cloud-based
+    GNSS corrections service that delivers reliable precision continent-wide.
+    Designed to meet diverse application needs, Skylark is available in three
+    distinct variants—Skylark Cx, Nx RTK, and Dx—each optimized for specific use
+    cases, ensuring the right balance of performance and practicality.
+  • Skylark Cx is a PPP-RTK corrections service that delivers uniform
+    centimeter-level accuracy across continents. With 3–7 cm accuracy and a fast
+    convergence time of under 20 seconds, its performance remains consistent,
+    regardless of distance from base stations—providing seamless accuracy at a
+    national and continental scale.
+  • The TruPrecison SDK application is a Windows application which provides an NTRIP
+    connection to stream Skylark corrections to the TW5794 Smart Antenna via the the
+    USB, which also provides a Virtual COM Port to allow customers to connect their
+    existing applications to the Tallysman TW5794 Smart GNSS Precise Heading Antenna
+    high precision “corrected” position data output. The position data may be either
+    NMEA or UBX formatted messages.  ROS2® Drivers are available for integration
+    with ROS2 open framework projects.
+  • For more than 40 years, Calian has been solving the world's most complex
+    problems by pairing the brightest minds with powerful technology. Calian's
+    innovative solutions move the world forward—from the satellites in space that
+    power our communications to the farms that grow our food, the medical
+    professionals, hospitals and clinics that take care of us, and the governments,
+    schools and private companies that make the world better every day.
+  • Calian creates advanced solutions for the space, defence and wired and
+    terrestrial wireless sectors. Our products and services span a wide range of
+    applications, from Earth stations and satellite communications, to cable access
+    and wired and terrestrial wireless products, to defence manufacturing and
+    engineering.
+  • Calian provides custom communication gateways for internet of things (IoT) and
+    aeronautical applications.
+  • Calian's satellite communications and ground systems support ensures your space
+    operations are successful
+  • Reach out to us to learn how our innovative solutions can help you solve your
+    most complex challenges.
+  • Our vision builds on our mission, values, historical commitment to social
+    responsibility and key competencies. It provides a framework and focus for our
+    activities and corporate communications related to ESG (Environmental Social
+    Governance).
+  • Their expertise enriches our solutions, and hiring military spouses is our
+    heartfelt way of giving back to the defence community. We’re committed to being
+    there for you, in and out of uniform.
+  • Our partnership with the Canadian Forces Morale and Welfare Services ensures
+    that military family members are connected with family doctors, hassle-free.
+  • We are woven into our community’s fabric, our support extending to renowned
+    organizations and causes. We’re not just about business; we are about building a
+    supportive and resilient community together.
+  • Our contributions to significant research projects and our focus on
+    environmental safety are unwavering. We’re front-runners in compliance with
+    environmental laws and continually innovate to lessen our ecological footprint.
+  • With a published Indigenous engagement policy, Calian sets out the framework and
+    guidelines for all Calian business activities while being wholly committed to
+    meeting—even exceeding—the five per cent Indigenous participation requirement on
+    all Federal contracts.
+
+IMAGE: https://sites.calian.com/app/uploads/sites/8/2025/02/TP5794-SWNAV.png
+
+================================================================================
+
+20. TP5790-SWNAV SDK - HIGH PRECISION SMART GNSS ANTENNA WITH INERTIAL MEASUREMENT UNIT AND RTK
+----------------------------------------------------------------------------------------------
+Product ID: tp5790-swnav-sdk-high-precision-smart-gnss-antenna-with-inertial-measurement-unit-and-rtk
+URL: https://www.calian.com/advanced-technologies/gnss_product/tp5790-swnav-sdk-high-precision-smart-gnss-antenna-with-inertial-measurement-unit-and-rtk/
+
+DESCRIPTION:
+  Calian’s High Precision Tallysman Smart GNSS antennas integrate advanced
+  receivers with High Precision Tallysman GNSS antennas, connecting Position,
+  Navigation and Timing resources to host systems over digital interfaces.  BUY
+  ONLINE.
+
+TECHNICAL SPECIFICATIONS:
+  • CoverageMountAmplifier GainConnector Options
+  • GPS/QZSS-L1,GPS/QZSS-L2,GLONASS-G1,GLONASS-G2,Galileo-E1,Galileo-E5b,BeiDou-B1,BeiDou-B2,L-band correction servicesThrough-Hole dBUSB 2.0,RJ45
+
+DETAILS:
+  • Ordering Information:
+  • 33-TP5790SDK-SWNAV-1 (33-5790-19-10-0S – USB);
+  • 33-TP5790SDK-SWNAV-2 (33-5790-29-10-05 – RS-232 + 33-0095-16 Serial to USB
+    Converter)
+  • Calian Smart GNSS SDK’s are a plug and play evaluation platform for Calian’s
+    Smart Antennas, with tools such as: TruPrecision Software, 6 month complementary
+    Swift Navigation Skylark Cx correction services and simple connection to a PC.
+  • Swift Navigation’s Skylark® Precise Positioning Service is a global, cloud-based
+    GNSS corrections service that delivers reliable precision continent-wide.
+    Designed to meet diverse application needs, Skylark is available in three
+    distinct variants—Skylark Cx, Nx RTK, and Dx—each optimized for specific use
+    cases, ensuring the right balance of performance and practicality.
+  • Skylark Cx is a PPP-RTK corrections service that delivers uniform
+    centimeter-level accuracy across continents. With 3–7 cm accuracy and a fast
+    convergence time of under 20 seconds, its performance remains consistent,
+    regardless of distance from base stations—providing seamless accuracy at a
+    national and continental scale.
+  • The TruPrecison SDK application is a Windows application which provides an
+    autonomous connection to stream PointPerfect IP or N-RTK corrections and
+    decryption keys to the TW5790 Smart Antenna via a USB connection, which also
+    provides a Virtual COM Port to allow customers to connect their existing
+    applications to the Calian Smart GNSS Antenna high precision position data
+    output. The position data may be either NMEA or UBX formatted messages..
+  • For more than 40 years, Calian has been solving the world's most complex
+    problems by pairing the brightest minds with powerful technology. Calian's
+    innovative solutions move the world forward—from the satellites in space that
+    power our communications to the farms that grow our food, the medical
+    professionals, hospitals and clinics that take care of us, and the governments,
+    schools and private companies that make the world better every day.
+  • Calian creates advanced solutions for the space, defence and wired and
+    terrestrial wireless sectors. Our products and services span a wide range of
+    applications, from Earth stations and satellite communications, to cable access
+    and wired and terrestrial wireless products, to defence manufacturing and
+    engineering.
+  • Calian provides custom communication gateways for internet of things (IoT) and
+    aeronautical applications.
+  • Calian's satellite communications and ground systems support ensures your space
+    operations are successful
+  • Reach out to us to learn how our innovative solutions can help you solve your
+    most complex challenges.
+  • Our vision builds on our mission, values, historical commitment to social
+    responsibility and key competencies. It provides a framework and focus for our
+    activities and corporate communications related to ESG (Environmental Social
+    Governance).
+  • Their expertise enriches our solutions, and hiring military spouses is our
+    heartfelt way of giving back to the defence community. We’re committed to being
+    there for you, in and out of uniform.
+  • Our partnership with the Canadian Forces Morale and Welfare Services ensures
+    that military family members are connected with family doctors, hassle-free.
+  • We are woven into our community’s fabric, our support extending to renowned
+    organizations and causes. We’re not just about business; we are about building a
+    supportive and resilient community together.
+  • Our contributions to significant research projects and our focus on
+    environmental safety are unwavering. We’re front-runners in compliance with
+    environmental laws and continually innovate to lessen our ecological footprint.
+  • With a published Indigenous engagement policy, Calian sets out the framework and
+    guidelines for all Calian business activities while being wholly committed to
+    meeting—even exceeding—the five per cent Indigenous participation requirement on
+    all Federal contracts.
+
+IMAGE: https://sites.calian.com/app/uploads/sites/8/2025/02/TP-5790-SWNAV-SDK-Cover.png
+
+================================================================================
+
+21. ARM990XF MULTI-CONSTELLATION FULL-BAND ANTENNA
+-------------------------------------------------
+Product ID: arm990xf-multi-constellation-full-band-antenna
+URL: https://www.calian.com/advanced-technologies/gnss_product/arm990xf-multi-constellation-full-band-antenna/
+
+DESCRIPTION:
+  Calian is excited to announce that it has added the ARM990XF full-band plus
+  L-Band GNSS antenna to its industry-leading line of GNSS antenna products.  The
+  ARM990XF employs Calian's patented Accutenna® technology providing GPS/QZSS
+  L1/L2/L5/L6, GLONASS-G1/G2/G3, Galileo E1/E5a/E5b/E6, and BeiDou B1/B2a/B2b/B3,
+  NavIC L5 + L-Band coverage.  The ARM990XF antenna is designed for precision
+  full-frequency positioning where lightweight and a low profile are important.
+
+TECHNICAL SPECIFICATIONS:
+  • CoverageMountAmplifier GainConnector Options
+
+FEATURES:
+  • Very low noise preamp (< 2.5 dB typ.)
+  • Tight phase centre variation
+  • High-gain LNA (28 or 33 dB typ.)
+  • Low current (32 mA typ.)
+  • ESD circuit protection (15 kV)
+  • Invariant performance from 2.5 to 16 VDC
+  • IP69K, REACH, and RoHS compliant
+
+BENEFITS:
+  • Excellent interference mitigation
+  • Excellent multipath rejection
+  • Increased system accuracy
+  • Excellent signal-to-noise ratio
+
+APPLICATIONS:
+  • Autonomous vehicle tracking and guidance
+  • Precise GNSS positioning
+  • Precision agriculture
+  • Full-frequency RTK and PPP receivers
+  • Law enforcement and public safety
+  • Augmented GNSS positioning
+
+DETAILS:
+  • The ARM990XF antenna is available in two form factors one includes a 100 mm
+    integrated ground plane, weighing 140 g, and the other one is 83mm in diameter
+    and weighs 138 grams. Both are 19 mm tall and support the ARINC mini bolt
+    pattern of 2.0” x 1.66”. Calian's ARM990XF is one of the smallest and lightest
+    housed triple-band precision Mini ARINC GNSS antennas on the market. It has a
+    very tight average phase center variation of less than 10 mm for all frequencies
+    and overall azimuths and elevation angles. In addition to supporting two form
+    factors both models are available with Low Earth Orbit (LEO) qualified
+    components.
+  • Housed in a weatherproof enclosure, the ARM990XF is available in four versions.
+    Model ARM990XF-1 has an integrated 100mm ground plane, Model ARM990XF-2 is 83 mm
+    in diameter. All models are available with either a female SMA or TNC connector.
+  • The new ARM990XF antenna supports Calian's eXtended Filtering (XF) technology.
+    Worldwide the radio frequency spectrum has become congested as many new LTE
+    bands have been activated, and their signals or harmonic frequencies can affect
+    GNSS antennas and receivers. In North America, the planned Ligado service, which
+    will broadcast in the frequency range of 1526 to 1536 MHz, can affect GNSS
+    signals. Similarly, new LTE signals in Europe [Band 32 (1452 – 1496 MHz)] and
+    Japan [Bands 11 and 21 (1476 – 1511 MHz)] have also affected GNSS signals.
+    Calian's XF technology mitigates all these signals.
+  • For more than 40 years, Calian has been solving the world's most complex
+    problems by pairing the brightest minds with powerful technology. Calian's
+    innovative solutions move the world forward—from the satellites in space that
+    power our communications to the farms that grow our food, the medical
+    professionals, hospitals and clinics that take care of us, and the governments,
+    schools and private companies that make the world better every day.
+  • Calian creates advanced solutions for the space, defence and wired and
+    terrestrial wireless sectors. Our products and services span a wide range of
+    applications, from Earth stations and satellite communications, to cable access
+    and wired and terrestrial wireless products, to defence manufacturing and
+    engineering.
+  • Calian provides custom communication gateways for internet of things (IoT) and
+    aeronautical applications.
+  • Calian's satellite communications and ground systems support ensures your space
+    operations are successful
+  • Reach out to us to learn how our innovative solutions can help you solve your
+    most complex challenges.
+  • Our vision builds on our mission, values, historical commitment to social
+    responsibility and key competencies. It provides a framework and focus for our
+    activities and corporate communications related to ESG (Environmental Social
+    Governance).
+  • Their expertise enriches our solutions, and hiring military spouses is our
+    heartfelt way of giving back to the defence community. We’re committed to being
+    there for you, in and out of uniform.
+  • Our partnership with the Canadian Forces Morale and Welfare Services ensures
+    that military family members are connected with family doctors, hassle-free.
+  • We are woven into our community’s fabric, our support extending to renowned
+    organizations and causes. We’re not just about business; we are about building a
+    supportive and resilient community together.
+  • Our contributions to significant research projects and our focus on
+    environmental safety are unwavering. We’re front-runners in compliance with
+    environmental laws and continually innovate to lessen our ecological footprint.
+  • With a published Indigenous engagement policy, Calian sets out the framework and
+    guidelines for all Calian business activities while being wholly committed to
+    meeting—even exceeding—the five per cent Indigenous participation requirement on
+    all Federal contracts.
+
+IMAGE: https://sites.calian.com/app/uploads/sites/8/2024/06/ARM990XFWEB.png
+
+================================================================================
+
+22. ARM960P MULTI-CONSTELLATION TRIPLE-BAND ANTENNA
+--------------------------------------------------
+Product ID: arm960p-multi-constellation-triple-band-antenna
+URL: https://www.calian.com/advanced-technologies/gnss_product/arm960p-multi-constellation-triple-band-antenna/
+
+DESCRIPTION:
+  Calian is excited to announce that it has added the ARM960P triple-band plus
+  L-Band GNSS passive antenna to its industry-leading line of GNSS antenna
+  products.  The ARM960P employs Calian's patented Accutenna® technology providing
+  GPS/QZSS L1/L2/L5, GLONASS-G1/G2/G3, Galileo E1/E5a/E5b, and BeiDou B1/B2a/B2b +
+  L-Band coverage.  The ARM960P antenna is designed for precision triple-frequency
+  positioning where lightweight and a low profile are important.
+
+TECHNICAL SPECIFICATIONS:
+  • CoverageMountAmplifier GainConnector Options
+  • GPS/QZSS-L1,GPS/QZSS-L2,GPS/QZSS-L5,GLONASS-G1,GLONASS-G2,Galileo-E1,Galileo-E5a,Galileo-E5b,BeiDou-B1,BeiDou-B2a,L-band correction services,Beidou-B2bARINC dBTNC Female,SMA (female)
+
+FEATURES:
+  • Tight phase centre variation
+  • IP69K (non-space), REACH, and RoHS
+
+BENEFITS:
+  • Excellent interference mitigation
+  • Excellent multipath rejection
+  • Increased system accuracy
+  • Excellent signal-to-noise ratio
+
+APPLICATIONS:
+  • Autonomous vehicle tracking and guidance
+  • Precise GNSS positioning
+  • Precision agriculture
+  • Triple-frequency RTK and PPP receivers
+  • Law enforcement and public safety
+  • Augmented GNSS positioning
+
+DETAILS:
+  • The ARM960P antenna is available in two form factors one includes a 100 mm
+    integrated ground plane, weighing 140 g, and the other one is 83mm in diameter
+    and weighs 138 grams. Both are 19 mm tall and support the ARINC mini bolt
+    pattern of 2.0” x 1.66”. Calian's ARM960P is one of the smallest and lightest
+    housed triple-band precision Mini ARINC GNSS antennas on the market. It has a
+    very tight average phase center variation of less than 10 mm for all frequencies
+    and overall azimuths and elevation angles. In addition to supporting two form
+    factors both models are available with Low Earth Orbit (LEO) qualified
+    components.
+  • Housed in a weatherproof enclosure, the ARM960P is available in four versions.
+    Model ARM960P-1 (ARM960P-1-S LEO Space qualified components) has an integrated
+    100mm ground plane, Model ARM960P-2 (ARM960P-2-S LEO Space qualified components)
+    is 83 mm in diameter. All models are available with either a female SMA or TNC
+    connector.
+  • For more than 40 years, Calian has been solving the world's most complex
+    problems by pairing the brightest minds with powerful technology. Calian's
+    innovative solutions move the world forward—from the satellites in space that
+    power our communications to the farms that grow our food, the medical
+    professionals, hospitals and clinics that take care of us, and the governments,
+    schools and private companies that make the world better every day.
+  • Calian creates advanced solutions for the space, defence and wired and
+    terrestrial wireless sectors. Our products and services span a wide range of
+    applications, from Earth stations and satellite communications, to cable access
+    and wired and terrestrial wireless products, to defence manufacturing and
+    engineering.
+  • Calian provides custom communication gateways for internet of things (IoT) and
+    aeronautical applications.
+  • Calian's satellite communications and ground systems support ensures your space
+    operations are successful
+  • Reach out to us to learn how our innovative solutions can help you solve your
+    most complex challenges.
+  • Our vision builds on our mission, values, historical commitment to social
+    responsibility and key competencies. It provides a framework and focus for our
+    activities and corporate communications related to ESG (Environmental Social
+    Governance).
+  • Their expertise enriches our solutions, and hiring military spouses is our
+    heartfelt way of giving back to the defence community. We’re committed to being
+    there for you, in and out of uniform.
+  • Our partnership with the Canadian Forces Morale and Welfare Services ensures
+    that military family members are connected with family doctors, hassle-free.
+  • We are woven into our community’s fabric, our support extending to renowned
+    organizations and causes. We’re not just about business; we are about building a
+    supportive and resilient community together.
+  • Our contributions to significant research projects and our focus on
+    environmental safety are unwavering. We’re front-runners in compliance with
+    environmental laws and continually innovate to lessen our ecological footprint.
+  • With a published Indigenous engagement policy, Calian sets out the framework and
+    guidelines for all Calian business activities while being wholly committed to
+    meeting—even exceeding—the five per cent Indigenous participation requirement on
+    all Federal contracts.
+
+IMAGE: https://sites.calian.com/app/uploads/sites/8/2024/06/ARM990XFWEB.png
+
+================================================================================
+
+23. TW3997 EMBEDDED MULTI-CONSTELLATION FULL-BAND ANTENNA
+--------------------------------------------------------
+Product ID: tw3997-embedded-multi-constellation-full-band-antenna
+URL: https://www.calian.com/advanced-technologies/gnss_product/tw3997-embedded-multi-constellation-full-band-antenna/
+
+DESCRIPTION:
+  The TW3997 is a precision-tuned full band Accutenna® technology antenna
+  providing full coverage of GPS/QZSS-L1/L2/L5/L6, GLONASS-G1/G2/G3,
+  Galileo-E1/E5a/E5b/E6, BeiDou-B1/B2/B2a/B3, NavIC-L5, L5, including the
+  satellite-based augmentation system (SBAS) available in the region of operation
+  [WAAS (North America), EGNOS (Europe), MSAS (Japan), or GAGAN (India)], plus
+  L-Band correction services.  It is especially designed for precise full-band
+  GNSS positioning.
+
+TECHNICAL SPECIFICATIONS:
+  • CoverageMountAmplifier GainConnector Options
+
+FEATURES:
+  • Very low noise preamp < 2.5 dB
+  • Axial ratio: < 2.0 dB typ.
+  • Tight phase centre variation
+  • High-gain LNA: 28 dB typ.
+  • Low current: 24 mA typ.
+  • ESD circuit protection (15 kV)
+  • Invariant performance from 2.5 to 16 VDC
+
+BENEFITS:
+  • Ideal for full-band RTK surveying systems
+  • Great multipath rejection
+  • Increased system accuracy
+  • Great signal-to-noise ratio
+  • REACH and RoHS compliant
+
+APPLICATIONS:
+  • Precision GPS position
+  • Triple Frequency RTK receivers
+  • Law enforcement and public safety
+
+DETAILS:
+  • Part Number: 33-3997-xx-zzzz
+  • The TW3997 features a precision-tuned, twin circular dual-feed, stacked patch
+    element. The signals from the two orthogonal feeds are combined in a hybrid
+    combiner, amplified in a wideband LNA, then band-split for narrow filtering in
+    each band and further amplified prior to recombination at the output. The
+    antenna also has a strong pre-filter to mitigate inter-modulated signal
+    interference from LTE and other cellular bands. The TW3997 offers excellent
+    axial ratio and a tightly grouped phase centre variation.
+  • Ideal for train control sensors, autonomous vehicle tracking and guidance,
+    precision agriculture, and other applications where precision matters, The
+    TW3997 provides superior multipath signal rejection, a linear phase response,
+    and tight phase centre variation (PCV).
+  • The OEM TW3997 is supplied with a standard 60 mm diameter circular ground plane,
+    with a coaxial cable terminated with a connector (right angle MCX is shown in
+    the drawing). Mounting holes are provided for attachment to larger ground
+    planes. Custom tuning and ground plane options may be available, depending on
+    purchase level commitment.
+  • For more than 40 years, Calian has been solving the world's most complex
+    problems by pairing the brightest minds with powerful technology. Calian's
+    innovative solutions move the world forward—from the satellites in space that
+    power our communications to the farms that grow our food, the medical
+    professionals, hospitals and clinics that take care of us, and the governments,
+    schools and private companies that make the world better every day.
+  • Calian creates advanced solutions for the space, defence and wired and
+    terrestrial wireless sectors. Our products and services span a wide range of
+    applications, from Earth stations and satellite communications, to cable access
+    and wired and terrestrial wireless products, to defence manufacturing and
+    engineering.
+  • Calian provides custom communication gateways for internet of things (IoT) and
+    aeronautical applications.
+  • Calian's satellite communications and ground systems support ensures your space
+    operations are successful
+  • Reach out to us to learn how our innovative solutions can help you solve your
+    most complex challenges.
+  • Our vision builds on our mission, values, historical commitment to social
+    responsibility and key competencies. It provides a framework and focus for our
+    activities and corporate communications related to ESG (Environmental Social
+    Governance).
+  • Their expertise enriches our solutions, and hiring military spouses is our
+    heartfelt way of giving back to the defence community. We’re committed to being
+    there for you, in and out of uniform.
+  • Our partnership with the Canadian Forces Morale and Welfare Services ensures
+    that military family members are connected with family doctors, hassle-free.
+  • We are woven into our community’s fabric, our support extending to renowned
+    organizations and causes. We’re not just about business; we are about building a
+    supportive and resilient community together.
+  • Our contributions to significant research projects and our focus on
+    environmental safety are unwavering. We’re front-runners in compliance with
+    environmental laws and continually innovate to lessen our ecological footprint.
+  • With a published Indigenous engagement policy, Calian sets out the framework and
+    guidelines for all Calian business activities while being wholly committed to
+    meeting—even exceeding—the five per cent Indigenous participation requirement on
+    all Federal contracts.
+
+IMAGE: https://sites.calian.com/app/uploads/sites/8/2024/06/TW3967-Top-Cable-final.png
+
+================================================================================
+
+24. VCS6000XF SMARTCHOKE
+-----------------------
+Product ID: vcs6000xf-smartchoke
+URL: https://www.calian.com/advanced-technologies/gnss_product/vcs6000xf-smartchoke/
+
+DESCRIPTION:
+  Smart Choke Ring for High Precision GNSS Base Station Applications
+
+TECHNICAL SPECIFICATIONS:
+  • CoverageMountAmplifier GainConnector Options
+
+DETAILS:
+  • Part Number: 33-VCS6000XF-59-zz
+  • The VCS6000 is a full GNSS spectrum antenna with an integrated “All-in-View”
+    GNSS receiver designed for precise base-station applications. The VCS6000XF
+    combines two industry leading technologies into the GNSS industry’s first
+    full-size precision Smart Choke Ring antenna.
+  • For more than 40 years, Calian has been solving the world's most complex
+    problems by pairing the brightest minds with powerful technology. Calian's
+    innovative solutions move the world forward—from the satellites in space that
+    power our communications to the farms that grow our food, the medical
+    professionals, hospitals and clinics that take care of us, and the governments,
+    schools and private companies that make the world better every day.
+
+IMAGE: https://sites.calian.com/app/uploads/sites/8/2025/09/VCS6000XF-1.png
+
+================================================================================
+
+25. TW164B
+---------
+Product ID: tw164b
+URL: https://www.calian.com/advanced-technologies/gnss_product/tw164b/
+
+DESCRIPTION:
+  TW164B 1-to-4 Port Smart Power GNSS Signal Splitter
+
+TECHNICAL SPECIFICATIONS:
+  • CoverageMountAmplifier GainConnector Options
+
+FEATURES:
+  • Accepts power from all attached receivers
+  • Automatic switching on failure of a receiver
+  • Antenna failure detection/indication
+  • Rugged military-grade aluminum enclosure
+  • Amplified to compensate for splitting loss
+  • Very low noise figure
+  • IP67 compliant
+
+BENEFITS:
+  • Allows up-to 4 receivers to share one antenna
+  • Fits in-line with antenna cable
+  • Robust package
+  • Ideal for harsh environments
+
+APPLICATIONS:
+  • GNSS signal distribution
+  • GNSS receiver testing
+  • High-availability applications
+  • Network and infrastructure timing
+
+DETAILS:
+  • Part Number: 32-0164B-xx
+  • The Calian TW164B is a professional-grade full GNSS band signal splitter that
+    connects one antenna up to four receivers, and supports GPS/QZSS-L1/L2/L5,
+    QZSS-L6, GLONASS-G1/G2/G3, BeiDou-B1/B2/B2a/B3, Galileo-E1/E5a/E5b/E6, NavIC-L5,
+    and L-Band correction services. This model has all four receiver ports in-line
+    on the backside of the splitter, with the antenna port located on the frontside.
+  • The design of first-generation GNSS signal splitters suffered from a single
+    point of failure: only one attached receiver powered the splitter and the
+    antenna. If this receiver failed or was unplugged, all attached receivers also
+    failed.
+  • Second, if the antenna fails and does not draw current, the TW164B will provide
+    all connectors with a current draw lower than 1 mA, indicating an antenna
+    fault.The TW164B offers the best in-class performance in terms of noise figure,
+    isolation, and linearity. In addition, it is packaged in a robust, compact,
+    lightweight, and waterproof (IP67) corrosion-protected aluminum housing.
+  • For more than 40 years, Calian has been solving the world's most complex
+    problems by pairing the brightest minds with powerful technology. Calian's
+    innovative solutions move the world forward—from the satellites in space that
+    power our communications to the farms that grow our food, the medical
+    professionals, hospitals and clinics that take care of us, and the governments,
+    schools and private companies that make the world better every day.
+
+IMAGE: https://sites.calian.com/app/uploads/sites/8/2024/08/TW164B-1.png
+
+================================================================================
+
+26. TW165B
+---------
+Product ID: tw165b
+URL: https://www.calian.com/advanced-technologies/gnss_product/tw165b/
+
+DESCRIPTION:
+  TW165B1-to-4 Port Smart Power GNSS Signal Splitter (10 dB gain)
+
+TECHNICAL SPECIFICATIONS:
+  • CoverageMountAmplifier GainConnector Options
+
+FEATURES:
+  • Accepts power from all attached receivers
+  • Automatic switching on failure of a receiver
+  • Antenna failure detection/indication
+  • Rugged military-grade aluminum enclosure
+  • Amplified to compensate for splitting loss
+  • Very low noise figure
+  • IP67 compliant
+
+BENEFITS:
+  • Allows up-to 4 receivers to share one antenna
+  • Fits in-line with antenna cable
+  • Robust package
+  • Ideal for harsh environments
+
+APPLICATIONS:
+  • GNSS signal distribution
+  • GNSS receiver testing
+  • High-availability applications
+  • Network and infrastructure timing
+
+DETAILS:
+  • Part Number: 32-0165B-xx
+  • The Calian TW165B is a professional-grade full GNSS band signal splitter that
+    connects one antenna up to four receivers, and supports GPS/QZSS-L1/L2/L5,
+    QZSS-L6, GLONASS-G1/G2/G3, BeiDou-B1/B2/B2a/B3, Galileo-E1/E5a/E5b/E6, NavIC-L5,
+    and L-Band correction services. This model has all four receiver ports in-line
+    on the backside of the splitter, with the antenna port located on the frontside.
+  • The design of first-generation GNSS signal splitters suffered from a single
+    point of failure: only one attached receiver powered the splitter and the
+    antenna. If this receiver failed or was unplugged, all attached receivers also
+    failed.
+  • Second, if the antenna fails and does not draw current, the TW165B will provide
+    all connectors with a current draw lower than 1 mA, indicating an antenna
+    fault.The TW165B offers the best in-class performance in terms of noise figure,
+    isolation, and linearity. In addition, it is packaged in a robust, compact,
+    lightweight, and waterproof (IP67) corrosion-protected aluminum housing.
+  • For more than 40 years, Calian has been solving the world's most complex
+    problems by pairing the brightest minds with powerful technology. Calian's
+    innovative solutions move the world forward—from the satellites in space that
+    power our communications to the farms that grow our food, the medical
+    professionals, hospitals and clinics that take care of us, and the governments,
+    schools and private companies that make the world better every day.
+
+IMAGE: https://sites.calian.com/app/uploads/sites/8/2024/08/TW165B.png
+
+================================================================================
+
 GNSS CONSTELLATION SUPPORT ANALYSIS
 --------------------------------------------------
-GPS: 13 products support this constellation
-GLONASS: 11 products support this constellation
-Galileo: 13 products support this constellation
-BeiDou: 12 products support this constellation
-QZSS: 13 products support this constellation
-NavIC: 6 products support this constellation
+GPS: 21 products support this constellation
+GLONASS: 18 products support this constellation
+Galileo: 21 products support this constellation
+BeiDou: 20 products support this constellation
+QZSS: 21 products support this constellation
+NavIC: 9 products support this constellation
 
 APPLICATION AREAS
 ------------------------------
-Timing: 1 relevant products
-Precision: 9 relevant products
+Timing: 3 relevant products
+Precision: 16 relevant products
 
 ================================================================================
 END OF REPORT
